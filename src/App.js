@@ -3,6 +3,7 @@ import HookCounter from "./components/HookCounter/HookCounter";
 import ClassCounter from "./components/HookCounter/ClassCounter";
 import Product from "./components/Product/Product";
 import HookObject from "./components/HookObject/HookObject";
+import HookArray from "./components/HookArray/HookArray";
 
 // class App extends Component {
 //   state = {
@@ -37,7 +38,7 @@ import HookObject from "./components/HookObject/HookObject";
 // }
 
 const App = () => {
-  return <HookObject />;
+  return <HookArray />;
 
   // const [products, setProducts] = useState([
   //   { title: "react", price: "89$" },
