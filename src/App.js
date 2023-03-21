@@ -1,46 +1,14 @@
 import React, { Component, useState } from "react";
-import Product from "./components/Product/Product";
 import styles from "./App.module.css";
+import ProductList from "./components/ProductList/ProductList";
 class App extends Component {
-  state = {
-    products: [
-      { id: 1, title: "react", price: "99$" },
-      { id: 2, title: "js", price: "89$" },
-      { id: 3, title: "git", price: "79$" },
-    ],
-  };
-
-  changePriceHandler = () => {
-    this.setState({
-      products: [
-        { title: "react", price: "69$" },
-        { title: "js", price: "29$" },
-        { title: "git", price: "19$" },
-      ],
-    });
-  };
-
-  addCart = (id) => {
-    const findedProduct = this.state.products.find((p) => p.id == id);
-    console.log(findedProduct);
-  };
 
   render() {
     return (
       <div id="container" className={styles.mydiv}>
         <h1>this is App</h1>
-        {this.state.products.map((product) => {
-          return (
-            <Product
-              name={product.title}
-              price={product.price}
-              key={product.id}
-              id={product.id}
-              click={() => this.addCart(product.id)}
-            />
-          );
-        })}
-        <button onClick={this.changePriceHandler}>change price</button>
+        <ProductList/>
+        
       </div>
     );
   }
