@@ -45,7 +45,7 @@ const ProductList = () => {
       {!products.length ? (
         <h1>Your cart is empty</h1>
       ) : (
-        products.map((product, index) => {
+        products.map((product) => {
           return (
             <Product
               product={product}
