@@ -20,6 +20,11 @@ class App extends Component {
     });
   };
 
+  addCart = (id) => {
+    const findedProduct = this.state.products.find((p) => p.id == id);
+    console.log(findedProduct);
+  };
+
   render() {
     return (
       <div id="container" className={styles.mydiv}>
@@ -30,6 +35,8 @@ class App extends Component {
               name={product.title}
               price={product.price}
               key={product.id}
+              id={product.id}
+              click={() => this.addCart(product.id)}
             />
           );
         })}
