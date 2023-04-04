@@ -1,31 +1,34 @@
 import styles from "./Product.module.css";
 import { FaTrashAlt } from "react-icons/fa";
 
-const Product = (props) => {
+const Product = ({
+  product,
+  id,
+  changeTitle,
+  onDelete,
+  increment,
+  decrement,
+}) => {
   return (
-    <div className={styles.product} id={props.id}>
-      <p>Product name : {props.product.title}</p>
-      <p>Product price : {props.product.price}</p>
-      <input
-        type="text"
-        onChange={props.changeTitle}
-        value={props.product.title}
-      />
-      <button onClick={props.click} className={styles.deleteBtn}>
+    <div className={styles.product} id={id}>
+      <p>Product name : {product.title}</p>
+      <p>Product price : {product.price}</p>
+      <input type="text" onChange={changeTitle} value={product.title} />
+      <button onClick={onDelete} className={styles.deleteBtn}>
         Delete
       </button>
       <div className={styles.btns}>
-        <button className={styles.incrementBtn} onClick={props.increment}>
+        <button className={styles.incrementBtn} onClick={increment}>
           +
         </button>
-        <p className={styles.numCart}>{props.product.quantity}</p>
+        <p className={styles.numCart}>{product.quantity}</p>
         <button
           className={
-            props.product.quantity === 1 ? styles.remove : styles.decrementBtn
+            product.quantity === 1 ? styles.remove : styles.decrementBtn
           }
-          onClick={props.decrement}
+          onClick={decrement}
         >
-          {props.product.quantity == 1 ? <FaTrashAlt /> : "-"}
+          {product.quantity == 1 ? <FaTrashAlt /> : "-"}
         </button>
       </div>
     </div>
