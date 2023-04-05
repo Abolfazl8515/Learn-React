@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import styles from "./Product.module.css";
 import { FaTrashAlt } from "react-icons/fa";
 
@@ -9,6 +10,12 @@ const Product = ({
   increment,
   decrement,
 }) => {
+  useEffect(() => {
+    console.log("Product.js useEffect");
+    return () => {
+      console.log("CWUM Product.js");
+    };
+  });
   return (
     <div className={styles.product} id={id}>
       <p>Product name : {product.title}</p>

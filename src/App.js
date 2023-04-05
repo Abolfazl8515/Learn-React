@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import styles from "./App.module.css";
 import Navbar from "./components/Navbar/Navbar";
 import ProductList from "./components/ProductList/ProductList";
+import ClassCounter from "./components/ClassCounter/ClassCounter";
+import ClassTimer from "./components/ClassTimer/ClassTimer";
 class App extends Component {
   state = {
     products: [
@@ -9,11 +11,8 @@ class App extends Component {
       { id: 2, title: "js", price: "89$", quantity: 2 },
       { id: 3, title: "git", price: "79$", quantity: 1 },
     ],
+    isShow: true,
   };
-
-  componentDidUpdate(prevProps, prevState) {
-    console.log(prevState);
-  }
 
   removeCart = (id) => {
     const findedProduct = this.state.products.filter((p) => p.id !== id);
@@ -55,16 +54,22 @@ class App extends Component {
 
   render() {
     return (
-      <div id="container" className={styles.mydiv}>
-        <Navbar totalItems={this.state.products.length} />
-        <ProductList
-          products={this.state.products}
-          removeCart={this.removeCart}
-          incrementHandler={this.incrementHandler}
-          decrementHandler={this.decrementHandler}
-          changeTitleHandler={this.changeTitleHandler}
-        />
-      </div>
+      <>
+        <button onClick={() => this.setState({ isShow: !this.state.isShow })}>
+          {this.state.isShow ? "Hide" : "Show"}
+        </button>
+        {this.state.isShow && <ClassTimer />}
+      </>
+      // <div id="container" className={styles.mydiv}>
+      //   <Navbar totalItems={this.state.products.length} />
+      //   <ProductList
+      //     products={this.state.products}
+      //     removeCart={this.removeCart}
+      //     incrementHandler={this.incrementHandler}
+      //     decrementHandler={this.decrementHandler}
+      //     changeTitleHandler={this.changeTitleHandler}
+      //   />
+      // </div>
     );
   }
 }
