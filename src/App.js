@@ -4,6 +4,9 @@ import Navbar from "./components/Navbar/Navbar";
 import ProductList from "./components/ProductList/ProductList";
 import ClassCounter from "./components/ClassCounter/ClassCounter";
 import ClassTimer from "./components/ClassTimer/ClassTimer";
+import Wrapper from "./components/Hoc/Wrapper";
+import HoverCount from "./components/HoverCount/HoverCount";
+import ClickCount from "./components/ClickCount/ClickCount";
 class App extends Component {
   state = {
     products: [
@@ -11,7 +14,6 @@ class App extends Component {
       { id: 2, title: "js", price: "89$", quantity: 2 },
       { id: 3, title: "git", price: "79$", quantity: 1 },
     ],
-    isShow: true,
   };
 
   removeCart = (id) => {
@@ -55,12 +57,10 @@ class App extends Component {
   render() {
     return (
       <>
-        <button onClick={() => this.setState({ isShow: !this.state.isShow })}>
-          {this.state.isShow ? "Hide" : "Show"}
-        </button>
-        {this.state.isShow && <ClassTimer />}
+        <HoverCount />
+        <ClickCount />
       </>
-      // <div id="container" className={styles.mydiv}>
+      // <>
       //   <Navbar totalItems={this.state.products.length} />
       //   <ProductList
       //     products={this.state.products}
@@ -69,7 +69,7 @@ class App extends Component {
       //     decrementHandler={this.decrementHandler}
       //     changeTitleHandler={this.changeTitleHandler}
       //   />
-      // </div>
+      // </>
     );
   }
 }
@@ -102,4 +102,4 @@ class App extends Component {
 //   );
 // };
 
-export default App;
+export default Wrapper(App, styles.mydiv);
