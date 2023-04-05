@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React, { Component } from "react";
 import styles from "./App.module.css";
 import Navbar from "./components/Navbar/Navbar";
 import ProductList from "./components/ProductList/ProductList";
@@ -6,10 +6,14 @@ class App extends Component {
   state = {
     products: [
       { id: 1, title: "react", price: "99$", quantity: 1 },
-      { id: 2, title: "js", price: "89$", quantity: 1 },
+      { id: 2, title: "js", price: "89$", quantity: 2 },
       { id: 3, title: "git", price: "79$", quantity: 1 },
     ],
   };
+
+  componentDidUpdate(prevProps, prevState) {
+    console.log(prevState);
+  }
 
   removeCart = (id) => {
     const findedProduct = this.state.products.filter((p) => p.id !== id);
@@ -18,30 +22,35 @@ class App extends Component {
   };
 
   incrementHandler = (id) => {
-    const cloneProducts = [...this.state.products];
-    const product = cloneProducts.find((p) => p.id === id);
+    const index = this.state.products.findIndex((item) => item.id === id);
+    const product = { ...this.state.products[index] };
     product.quantity++;
-    this.setState({ products: cloneProducts });
+    const updatedProducts = [...this.state.products];
+    updatedProducts[index] = product;
+    this.setState({ products: updatedProducts });
   };
 
   decrementHandler = (id) => {
-    const cloneProducts = [...this.state.products];
-    const product = cloneProducts.find((p) => p.id === id);
+    const index = this.state.products.findIndex((item) => item.id === id);
+    const product = { ...this.state.products[index] };
     if (product.quantity > 1) {
       product.quantity--;
     } else {
       this.removeCart(id);
       return;
     }
-    this.setState({ products: cloneProducts });
+    const products = [...this.state.products];
+    products[index] = product;
+    this.setState({ products });
   };
 
   changeTitleHandler = (e, id) => {
-    const cloneProducts = [...this.state.products];
-    const product = cloneProducts.find((p) => p.id === id);
+    const index = this.state.products.findIndex((item) => item.id === id);
+    const product = { ...this.state.products[index] };
+    const updatedProducts = [...this.state.products];
     product.title = e.target.value;
-    this.setState({ products: cloneProducts });
-    console.log(e.target.value);
+    updatedProducts[index] = product;
+    this.setState({ products: updatedProducts });
   };
 
   render() {

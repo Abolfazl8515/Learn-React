@@ -3,10 +3,11 @@ import "./Navbar.module.css";
 
 class Navbar extends Component {
   render() {
+    const { totalItems } = this.props;
     return (
       <header>
         <h1>this is App</h1>
-        <span>{this.props.totalItems}</span>
+        <span>{totalItems}</span>
       </header>
     );
   }
