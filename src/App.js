@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import styles from "./App.module.css";
 import Navbar from "./components/Navbar/Navbar";
 import ProductList from "./components/ProductList/ProductList";
+import CounterContextProvider from "./components/CounterContext/CounterContextProvider";
+import CounterOne from "./components/CounterContext/CounterOne";
 class App extends Component {
   state = {
     products: [
@@ -51,16 +53,20 @@ class App extends Component {
 
   render() {
     return (
-      <>
-        <Navbar totalItems={this.state.products.length} />
+      <div className={styles.mydiv}>
+        <CounterContextProvider>
+          <p>Wellcome to context</p>
+          <CounterOne />
+        </CounterContextProvider>
+        {/* <Navbar totalItems={this.state.products.length} />
         <ProductList
           products={this.state.products}
           removeCart={this.removeCart}
           incrementHandler={this.incrementHandler}
           decrementHandler={this.decrementHandler}
           changeTitleHandler={this.changeTitleHandler}
-        />
-      </>
+        /> */}
+      </div>
     );
   }
 }
@@ -93,4 +99,4 @@ class App extends Component {
 //   );
 // };
 
-export default Wrapper(App, styles.mydiv);
+export default App;
