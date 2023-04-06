@@ -7,6 +7,7 @@ import ClassTimer from "./components/ClassTimer/ClassTimer";
 import Wrapper from "./components/Hoc/Wrapper";
 import HoverCount from "./components/HoverCount/HoverCount";
 import ClickCount from "./components/ClickCount/ClickCount";
+import Parent from "./components/PureMemoComp/Parent";
 class App extends Component {
   state = {
     products: [
@@ -57,8 +58,9 @@ class App extends Component {
   render() {
     return (
       <>
-        <HoverCount />
-        <ClickCount />
+        <Parent />
+        {/* <HoverCount />
+        <ClickCount /> */}
       </>
       // <>
       //   <Navbar totalItems={this.state.products.length} />
