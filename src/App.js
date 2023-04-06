@@ -2,12 +2,6 @@ import React, { Component } from "react";
 import styles from "./App.module.css";
 import Navbar from "./components/Navbar/Navbar";
 import ProductList from "./components/ProductList/ProductList";
-import ClassCounter from "./components/ClassCounter/ClassCounter";
-import ClassTimer from "./components/ClassTimer/ClassTimer";
-import Wrapper from "./components/Hoc/Wrapper";
-import HoverCount from "./components/HoverCount/HoverCount";
-import ClickCount from "./components/ClickCount/ClickCount";
-import Parent from "./components/PureMemoComp/Parent";
 class App extends Component {
   state = {
     products: [
@@ -58,20 +52,15 @@ class App extends Component {
   render() {
     return (
       <>
-        <Parent />
-        {/* <HoverCount />
-        <ClickCount /> */}
+        <Navbar totalItems={this.state.products.length} />
+        <ProductList
+          products={this.state.products}
+          removeCart={this.removeCart}
+          incrementHandler={this.incrementHandler}
+          decrementHandler={this.decrementHandler}
+          changeTitleHandler={this.changeTitleHandler}
+        />
       </>
-      // <>
-      //   <Navbar totalItems={this.state.products.length} />
-      //   <ProductList
-      //     products={this.state.products}
-      //     removeCart={this.removeCart}
-      //     incrementHandler={this.incrementHandler}
-      //     decrementHandler={this.decrementHandler}
-      //     changeTitleHandler={this.changeTitleHandler}
-      //   />
-      // </>
     );
   }
 }
