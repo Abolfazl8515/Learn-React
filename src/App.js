@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar/Navbar";
 import ProductList from "./components/ProductList/ProductList";
 import CounterContextProvider from "./components/CounterContext/CounterContextProvider";
 import CounterOne from "./components/CounterContext/CounterOne";
+import ReducerCount from "./components/Reducer/ReducerCount";
 class App extends Component {
   state = {
     products: [
@@ -54,10 +55,11 @@ class App extends Component {
   render() {
     return (
       <div className={styles.mydiv}>
-        <CounterContextProvider>
+        {/* <CounterContextProvider>
           <p>Wellcome to context</p>
           <CounterOne />
-        </CounterContextProvider>
+        </CounterContextProvider> */}
+        <ReducerCount />
         {/* <Navbar totalItems={this.state.products.length} />
         <ProductList
           products={this.state.products}
