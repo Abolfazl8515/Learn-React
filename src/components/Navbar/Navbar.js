@@ -1,16 +1,15 @@
 import React, { Component } from "react";
 import "./Navbar.module.css";
+import { useProducts } from "../AppProvider";
 
-class Navbar extends Component {
-  render() {
-    const { totalItems } = this.props;
-    return (
-      <header>
-        <h1>this is App</h1>
-        <span>{totalItems}</span>
-      </header>
-    );
-  }
-}
+const Navbar = () => {
+  const products = useProducts();
+  return (
+    <header>
+      <h1>this is App</h1>
+      <span>{products.length}</span>
+    </header>
+  );
+};
 
 export default Navbar;
