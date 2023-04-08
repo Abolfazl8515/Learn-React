@@ -42,9 +42,9 @@ const reducer = (state, aciton) => {
       updatedProductsTitle[indexTitle] = productTitle;
       return updatedProductsTitle;
     case "filter":
-      if (aciton.e.target.value !== "All") {
+      if (aciton.e.value !== "All") {
         return productsData.filter(
-          (p) => p.availableSizes.indexOf(aciton.e.target.value) >= 0
+          (p) => p.availableSizes.indexOf(aciton.e.value) >= 0
         );
       } else {
         return productsData;
