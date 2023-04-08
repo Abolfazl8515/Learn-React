@@ -1,13 +1,14 @@
 import React, { useContext, useReducer } from "react";
+import { productsData } from "../db/products";
 
 const ProductsContext = React.createContext();
 const ProductsContextDispatcher = React.createContext();
 
-const initialState = [
-  { id: 1, title: "react", price: "99$", quantity: 1 },
-  { id: 2, title: "js", price: "89$", quantity: 2 },
-  { id: 3, title: "git", price: "79$", quantity: 1 },
-];
+// const initialState = [
+//   { id: 1, title: "react", price: "99$", quantity: 1 },
+//   { id: 2, title: "js", price: "89$", quantity: 2 },
+//   { id: 3, title: "git", price: "79$", quantity: 1 },
+// ];
 const reducer = (state, aciton) => {
   console.log(aciton);
   switch (aciton.type) {
@@ -40,13 +41,22 @@ const reducer = (state, aciton) => {
       productTitle.title = aciton.e.target.value;
       updatedProductsTitle[indexTitle] = productTitle;
       return updatedProductsTitle;
+    case "filter":
+      if (aciton.e.target.value !== "All") {
+        return productsData.filter(
+          (p) => p.availableSizes.indexOf(aciton.e.target.value) >= 0
+        );
+      } else {
+        return productsData;
+      }
+
     default:
       return state;
   }
 };
 
 const AppProvider = ({ children }) => {
-  const [products, dispatch] = useReducer(reducer, initialState);
+  const [products, dispatch] = useReducer(reducer, productsData);
 
   return (
     <ProductsContext.Provider value={products}>

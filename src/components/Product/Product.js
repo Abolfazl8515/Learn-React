@@ -14,7 +14,7 @@ const Product = ({
     <div className={styles.product} id={id}>
       <p>Product name : {product.title}</p>
       <p>Product price : {product.price}</p>
-      <input type="text" onChange={changeTitle} value={product.title} />
+      <p>Available sizes : {product.availableSizes.map((s) => s)}</p>
       <button onClick={onDelete} className={styles.deleteBtn}>
         Delete
       </button>
