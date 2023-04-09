@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { useProductsActions } from "../AppProvider";
+import SelectComponent from "../../common/Select/Select";
 import styles from "./Filter.module.css";
-import Select from "react-select";
+import Search from "../../common/Search/Search";
 
 const optionsSize = [
   { value: "All", label: "All" },
@@ -19,7 +20,7 @@ const optionsPrice = [
 
 const Filter = () => {
   const dispatch = useProductsActions();
-  const [valueSize, setValueSize] = useState("");
+  const [valueSize, setValueSize] = useState({ value: "All", label: "All" });
   const [valuePrice, setValuePrice] = useState("");
 
   const changeSizeHandler = (e) => {
@@ -35,16 +36,17 @@ const Filter = () => {
 
   return (
     <div className={styles.filter}>
-      <Select
+      <SelectComponent
         value={valueSize}
         onChange={changeSizeHandler}
         options={optionsSize}
       />
-      <Select
+      <SelectComponent
         value={valuePrice}
         onChange={changePriceHandler}
         options={optionsPrice}
       />
+      <Search filter={valueSize} sort={valuePrice} />
     </div>
   );
 };

@@ -59,6 +59,14 @@ const reducer = (state, aciton) => {
         }
       });
       return sortedProducts;
+    case "search":
+      if (aciton.e.target.value === "") {
+        return state;
+      } else {
+        return state.filter((p) =>
+          p.title.toLowerCase().includes(aciton.e.target.value.toLowerCase())
+        );
+      }
     default:
       return state;
   }
