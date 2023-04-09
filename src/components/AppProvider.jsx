@@ -41,7 +41,7 @@ const reducer = (state, aciton) => {
       productTitle.title = aciton.e.target.value;
       updatedProductsTitle[indexTitle] = productTitle;
       return updatedProductsTitle;
-    case "filter":
+    case "filterSize":
       if (aciton.e.value !== "All") {
         return productsData.filter(
           (p) => p.availableSizes.indexOf(aciton.e.value) >= 0
@@ -49,7 +49,16 @@ const reducer = (state, aciton) => {
       } else {
         return productsData;
       }
-
+    case "filterPrice":
+      const products = [...state];
+      const sortedProducts = products.sort((a, b) => {
+        if (aciton.e.value === "theMostExpensive") {
+          return a.price > b.price ? -1 : 1;
+        } else {
+          return a.price < b.price ? -1 : 1;
+        }
+      });
+      return sortedProducts;
     default:
       return state;
   }
